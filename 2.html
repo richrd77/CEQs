@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <!--displays the title of the HTML page-->
+    <title>Q2</title>
+    <style>
+        .second-p-element {
+            color: blue;
+        }
+    </style>
+    <link rel="stylesheet" href="./2.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body class="p-4">
+    <h1>different ways to apply styles in a Web page</h1>
+    <table border="1" class="table">
+        <thead>
+            <th>Type</th>
+            <th>Remarks</th>
+            <th>Output</th>
+            <th>Code</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Inline Style</td>
+                <td>Styles given right into the html element</td>
+                <td>
+                    <p style="color: red;">This is general output</p>
+                </td>
+                <td>&lt;p style=&quot;color: red;&quot;&gt;This is general output&lt;/p&gt;</td>
+            </tr>
+            <tr>
+                <td>Within HTML page</td>
+                <td>Styles given in the same HTML page within style tag in the head and uses class attribute</td>
+                <td>
+                    <p class="second-p-element">This is general output</p>
+                </td>
+                <td>
+                    <div>
+                        <h4>Element</h4>
+                        <p>&lt;p class=&quot;second-p-element&quot;&gt;This is general output&lt;/p&gt;</p><br />
+                        <h4>Style tag in head</h4>
+                        <p>&lt;style&gt;
+                            .second-p-element {
+                            color: blue;
+                            }
+                            &lt;/style&gt;</p>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Internal Style</td>
+                <td>Styles given in seperate css file and include it in head tag</td>
+                <td>
+                    <p class="internal-style">This is general output</p>
+                </td>
+                <td>
+                    <div>
+                        <h4>Element</h4>
+                        <p>&lt;p class=&quot;internal-style&quot;&gt;This is general output&lt;/p&gt;</p><br />
+                        <h4>Style tag in head</h4>
+                        <p>&lt;link rel=&quot;stylesheet&quot; href=&quot;./2.css&quot;&gt;</p>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>External Style</td>
+                <td>Styles given in different source/server (ex:- bootstrap) and include it in head tag to apply styles
+                    use their classes</td>
+                <td>
+                    <p class="lead">This is general output</p>
+                </td>
+                <td>
+                    <div>
+                        <h4>Element</h4>
+                        <p>&lt;p class=&quot;lead&quot;&gt;This is general output&lt;/p&gt;</p><br />
+                        <h4>Style tag in head</h4>
+                        <p>&lt;link
+                            href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css&quot;
+                            rel=&quot;stylesheet&quot;
+                            integrity=&quot;sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC&quot;
+                            crossorigin=&quot;anonymous&quot;&gt;</p>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>
