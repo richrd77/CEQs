@@ -1,12 +1,71 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Q5</title>
 </head>
+
 <body>
-    
+    <h1>Popcorn Order</h1>
+    <form>
+
+        <table>
+            <thead></thead>
+            <tbody>
+                <tr>
+                    <td>Name</td>
+                    <td colspan="100"><input required type="text" name="name" id="name"></td>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td colspan="100"><input required type="text" name="address" id="address"></td>
+                </tr>
+                <tr>
+                    <td colspan="100">
+                        <table>
+                            <thead></thead>
+                            <tbody>
+                                <tr>
+                                    <td>Plain Popcorn</td>
+                                    <td>100</td>
+                                    <td colspan="2"><input type="number" name="q1" id="q1"></td>
+                                </tr>
+                                <tr>
+                                    <td>Butter Popcorn</td>
+                                    <td>200</td>
+                                    <td colspan="2"><input type="number" name="q2" id="q2"></td>
+                                </tr>
+                                <tr>
+                                    <td>Masala Popcorn</td>
+                                    <td>300</td>
+                                    <td colspan="2"><input type="number" name="q3" id="q3"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="100">
+                                        <label>
+                                            <span>Payment Type: </span><br />
+                                            <label><input type="radio" name="pay"
+                                                    id="net"><span>Netbanking</span></label>&nbsp;&nbsp;
+                                            <label><input type="radio" name="pay"
+                                                    id="upi"><span>UPI</span></label>&nbsp;&nbsp;
+                                            <label><input type="radio" name="pay"
+                                                    id="cash"><span>Cash</span></label>&nbsp;&nbsp;
+                                            <label><input type="radio" name="pay"
+                                                    id="card"><span>Card</span></label>&nbsp;&nbsp;
+                                        </label>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr><td><input type="submit" value="Place Order"></td></tr>
+            </tbody>
+        </table>
+    </form>
 </body>
+
 </html>
