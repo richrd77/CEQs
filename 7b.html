@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: space-evenly;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        main {
+            min-height: 50vh;
+            /* background-color: red; */
+            box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.4);
+            border-radius: 4px;
+            padding: 2em;
+        }
+
+        h2 {
+            margin-bottom: 2em;
+        }
+
+        div.row {
+            margin-bottom: 1em;
+        }
+
+        div.row.rev {
+            text-align: center;
+            /* padding-right: 2em; */
+        }
+
+        input {
+            padding: 0.5em 1em;
+            outline: none;
+        }
+
+        input:focus {
+            box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.4);
+        }
+
+        input[type=submit] {
+            background-color: transparent;
+        }
+
+        input[type=submit]:hover,
+        input[type=submit]:active,
+        input[type=submit]:focus {
+            background-color: black;
+            color: white;
+        }
+
+        .err {
+            min-height: 1em;
+        }
+
+        .msg {
+            color: red;
+            display: none;
+        }
+
+        .success {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <h2 class="title">Number game</h2>
+        <form id="frm">
+            <div class="row">
+                <label for="num">Please enter a number</label>
+                <input type="number" name="num" id="num">
+            </div>
+            <div class="row err">
+                <span class="msg empty-err">Cannot be Empty</span>
+                <span class="msg success">number in reverse order is <span id="result"></span></span>
+            </div>
+            <div class="row rev">
+                <input type="submit" value="Reverse">
+            </div>
+        </form>
+    </main>
+    <script>
+
+        document.querySelector('#frm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            document.querySelectorAll('.msg').forEach(e => e.style.display = 'none');
+            const num = Number(e.target['num'].value) //parsing
+            // console.log(num);
+            if (num) {
+                document.querySelector('#result').textContent = flipNumber(num);
+                document.querySelector('.success').style.display = 'inline';
+            }
+        });
+
+        function flipNumber(n) {
+            var digit, result = 0
+
+            while (n) {
+                digit = n % 10  //  Get right-most digit. Ex. 123/10 → 12.3 → 3
+                result = (result * 10) + digit  //  Ex. 123 → 1230 + 4 → 1234
+                n = n / 10 | 0  //  Remove right-most digit. Ex. 123 → 12.3 → 12
+            }
+
+            return result
+        }
+    </script>
+</body>
+
+</html>

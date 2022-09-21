@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6 a</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: space-evenly;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        main {
+            min-height: 50vh;
+            /* background-color: red; */
+            box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.4);
+            border-radius: 4px;
+            padding: 2em;
+        }
+
+        h2 {
+            margin-bottom: 2em;
+        }
+
+        div.row {
+            margin-bottom: 1em;
+        }
+
+        div.row.rev {
+            text-align: center;
+            /* padding-right: 2em; */
+        }
+
+        input {
+            padding: 0.5em 1em;
+            outline: none;
+        }
+
+        input:focus {
+            box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.4);
+        }
+
+        input[type=submit] {
+            background-color: transparent;
+        }
+
+        input[type=submit]:hover,
+        input[type=submit]:active,
+        input[type=submit]:focus {
+            background-color: black;
+            color: white;
+        }
+
+        .err {
+            min-height: 1em;
+        }
+
+        .msg {
+            color: red;
+            display: none;
+        }
+
+        .success {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <h2 class="title">USN Validator</h2>
+        <form id="frm">
+            <div class="row">
+                <label for="usn">Please Enter Usn</label>
+                <input type="text" name="usn" id="usn">
+            </div>
+            <div class="row err">
+                <span class="msg empty-err">Cannot be Empty</span>
+                <span class="msg invalid-err">Invalid USN</span>
+                <span class="msg success">your USN is <span id="result"></span></span>
+            </div>
+            <div class="row rev">
+                <input type="submit" value="Validate">
+            </div>
+        </form>
+    </main>
+    <script>
+        document.getElementById('frm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const frm = e.target;
+            const usn = frm['usn'].value;
+            document.querySelectorAll('.msg').forEach(e => e.style.display = 'none');
+            if (usn) {
+                const r = ValidateUsn(usn);
+                if (r) {
+                    document.querySelector('#result').textContent = usn;
+                    document.querySelector('.success').style.display = 'inline';
+                } else {
+                    document.querySelector('.invalid-err').style.display = 'inline';
+                }
+            } else {
+                document.querySelector('.empty-err').style.display = 'inline';
+            }
+        });
+
+        function ValidateUsn(usn) {
+            const regularExpression = /[0-9]{4}[A-Z]{2}[0-9]{2}[A-Z]{3}[0-9]{2}/;
+            return regularExpression.test(usn);
+        }
+    </script>
+</body>
+
+</html>

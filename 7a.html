@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: space-evenly;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        main {
+            min-height: 50vh;
+            /* background-color: red; */
+            box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.4);
+            border-radius: 4px;
+            padding: 2em;
+        }
+
+        h2 {
+            margin-bottom: 2em;
+        }
+
+        div.row {
+            margin-bottom: 1em;
+        }
+
+        div.row.rev {
+            text-align: center;
+            /* padding-right: 2em; */
+        }
+
+        input {
+            padding: 0.5em 1em;
+            outline: none;
+        }
+
+        input:focus {
+            box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.4);
+        }
+
+        input[type=submit] {
+            background-color: transparent;
+        }
+
+        input[type=submit]:hover,
+        input[type=submit]:active,
+        input[type=submit]:focus {
+            background-color: black;
+            color: white;
+        }
+
+        .err {
+            min-height: 1em;
+        }
+
+        .msg {
+            color: red;
+            display: none;
+        }
+
+        .success {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <h2 class="title">Vowel Locator</h2>
+        <form id="frm">
+            <div class="row">
+                <label for="word">Please enter a word/sentence</label>
+                <input type="text" name="word" id="word">
+            </div>
+            <div class="row err">
+                <span class="msg empty-err">Cannot be Empty</span>
+                <span class="msg success no">no vowel found</span>
+                <span class="msg success y">vowel is in position <span id="result"></span> from left side</span>
+            </div>
+            <div class="row rev">
+                <input type="submit" value="Find Vowel">
+            </div>
+        </form>
+    </main>
+    <script>
+        document.querySelector('#frm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            document.querySelectorAll('.msg').forEach(e => e.style.display = 'none');
+            const w = e.target['word'].value
+            // console.log(num);
+            if (w) {
+                const chars = w.split('');
+                let IsVowelFound = false;
+                let position = 0;
+                for (let ch of chars) {
+                    if (IsVowelFound) {
+                        break;
+                    } else {
+                        position++;
+                        IsVowelFound = IsVowel(ch);
+                    }
+                }
+
+                if(IsVowelFound) {
+                    document.querySelector('#result').textContent = position;
+                    document.querySelector('.success.y').style.display = 'inline';
+                } else {
+                    document.querySelector('.success.no').style.display = 'inline';
+                }
+            } else {
+                document.querySelector('.empty-err').style.display = 'inline';
+            }
+        });
+
+        function IsVowel(ch) {
+            const vowel = ['a', 'e', 'i', 'o', 'u'];
+            return vowel.includes(ch.toLowerCase());
+        }
+    </script>
+</body>
+
+</html>

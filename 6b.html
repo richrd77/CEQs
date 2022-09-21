@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6 a</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: space-evenly;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        main {
+            min-height: 50vh;
+            /* background-color: red; */
+            box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.4);
+            border-radius: 4px;
+            padding: 2em;
+        }
+
+        h2 {
+            margin-bottom: 2em;
+        }
+
+        div.row {
+            margin-bottom: 1em;
+        }
+
+        div.row.rev {
+            text-align: center;
+            /* padding-right: 2em; */
+        }
+
+        input {
+            padding: 0.5em 1em;
+            outline: none;
+        }
+
+        input:focus {
+            box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.4);
+        }
+
+        input[type=submit] {
+            background-color: transparent;
+        }
+
+        input[type=submit]:hover,
+        input[type=submit]:active,
+        input[type=submit]:focus {
+            background-color: black;
+            color: white;
+        }
+
+        .err {
+            min-height: 1em;
+        }
+
+        .msg {
+            color: red;
+            display: none;
+        }
+
+        .msg.success {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <h2 class="title">Semester Validator</h2>
+        <form id="frm">
+            <div class="row">
+                <label for="sem">Please Enter Sem</label>
+                <input type="number" name="sem" id="sem">
+            </div>
+            <div class="row err">
+                <span class="msg empty-err">Cannot be Empty</span>
+                <span class="msg invalid-err">Invalid Sem</span>
+                <span class="msg success">your are currently in Semester <span id="result"></span></span>
+            </div>
+            <div class="row rev">
+                <input type="submit" value="Validate">
+            </div>
+        </form>
+    </main>
+    <script>
+        // const possibleUsn = prompt('Please enter USN');
+
+        document.getElementById('frm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const frm = e.target;
+            const sem = frm['sem'].value;
+            document.querySelectorAll('.msg').forEach(e => e.style.display = 'none');
+            if (sem) {
+                const r = ValidateSem(sem);
+                if (!r) {
+                    document.querySelector('.invalid-err').style.display = 'inline';
+                } else {
+                    result.textContent = sem;
+                    document.querySelector('.success').style.display = 'inline';
+                }
+            } else {
+                document.querySelector('.empty-err').style.display = 'inline';
+            }
+        });
+
+        function ValidateSem(sem) {
+            return sem >= 1 && sem <= 6;
+        }
+    </script>
+</body>
+
+</html>

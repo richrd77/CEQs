@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress bar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: space-evenly;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        main {
+            min-height: 50vh;
+            /* background-color: red; */
+            box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.4);
+            border-radius: 4px;
+            padding: 2em;
+        }
+
+        h2 {
+            margin-bottom: 2em;
+        }
+
+        div.row {
+            margin-bottom: 1em;
+        }
+
+        div.row.rev {
+            text-align: center;
+            /* padding-right: 2em; */
+        }
+
+        input {
+            padding: 0.5em 1em;
+            outline: none;
+        }
+
+        input:focus {
+            box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.4);
+        }
+
+        input[type=submit] {
+            background-color: transparent;
+        }
+
+        input[type=submit]:hover,
+        input[type=submit]:active,
+        input[type=submit]:focus {
+            background-color: black;
+            color: white;
+        }
+
+        .progress-wrapper {
+            border: 1px solid red;
+            padding: 3px;
+        }
+        .progress-state {
+            height: 1em;
+            width: 0;
+            background-color: red;
+            transition: width 0.5s;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <h2 class="title">Progress bar</h2>
+        <form id="frm">
+            <div class="row">
+                <label for="prog">Please enter percentage</label>
+                <input type="number" name="prog" id="prog" min="1" max="100">
+            </div>
+            <div class="row rev">
+                <input type="submit" value="Update">
+            </div>
+
+            <div class="row">
+                <div class="progress-wrapper">
+                    <div class="progress-state"></div>
+                </div>
+            </div>
+        </form>
+    </main>
+    <script>
+
+        document.querySelector('#frm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const num = Number(e.target['prog'].value) //parsing
+            if (num) {
+                document.querySelector('.progress-state').style.width = `${num}%`;
+            }
+        });
+    </script>
+</body>
+
+</html>
